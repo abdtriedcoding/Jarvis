@@ -18,12 +18,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head></head>
-      <body className={`${inter.className} flex h-screen`}>
+      <body className={`${inter.className} flex h-full`}>
         <aside className="w-1/5 bg-gray-300 p-4">
           <Sidebar />
         </aside>
-        <main className="w-4/5 p-4 bg-slate-400">
+        <main className="w-4/5 p-4  bg-slate-400 overflow-y-auto">
           {children}
         </main>
       </body>
