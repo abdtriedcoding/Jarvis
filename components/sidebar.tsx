@@ -2,10 +2,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { PencilIcon } from "lucide-react";
 import Link from "next/link";
 import ChatHistoryBox from "./chat-historybox";
+import ProfileDropdown from "./profile-dropdown";
 
 const Sidebar = () => {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* New chat button */}
       <Link href={"/"}>
         <div className="flex justify-between items-center text-center bg-slate-100 hover:bg-slate-200 p-1 rounded-md">
@@ -23,7 +24,11 @@ const Sidebar = () => {
         </div>
       </Link>
       {/* Chat history */}
+      <div className="max-h-[480px] overflow-y-auto">
       <ChatHistoryBox />
+      </div>
+      {/* Profile dropdown */}
+      <ProfileDropdown />
     </div>
   );
 };
