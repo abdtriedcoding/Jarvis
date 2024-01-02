@@ -5,6 +5,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
+import DeleteChatModal from "./delete-chat-modal";
 
 const chatHistory = [
   "Hi there!",
@@ -68,16 +69,7 @@ const ChatHistoryBox = () => {
           className="flex justify-between items-center text-center mb-4"
         >
           <h3 className="truncate mr-2 font-medium">{message}</h3>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <MoreHorizontal className="text-slate-600" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>Share</DropdownMenuItem>
-              <DropdownMenuItem>Rename</DropdownMenuItem>
-              <DropdownMenuItem>Delete</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <DeleteChatModal />
         </div>
       ))}
     </div>
