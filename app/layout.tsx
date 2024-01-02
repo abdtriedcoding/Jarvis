@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import 'tailwindcss/tailwind.css';
+import Sidebar from '@/components/sidebar';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head></head>
+      <body className={`${inter.className} flex h-screen`}>
+        <aside className="w-1/5 bg-gray-300 p-4">
+          <Sidebar />
+        </aside>
+        <main className="w-4/5 p-4 bg-slate-400">
+          {children}
+        </main>
+      </body>
     </html>
   )
 }
