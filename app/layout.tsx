@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "tailwindcss/tailwind.css";
 import Sidebar from "@/components/sidebar";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,8 @@ export default function RootLayout({
         <aside className="w-1/5 bg-gray-300 p-4">
           <Sidebar />
         </aside>
-        <main className="w-4/5 p-4 bg-slate-400 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
+        <main className="w-4/5 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
+          <Navbar />
           {children}
         </main>
       </body>
