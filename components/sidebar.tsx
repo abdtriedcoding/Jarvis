@@ -24,8 +24,8 @@ const Sidebar = () => {
         </div>
       </Link>
       {/* Chat history */}
-      <div className="max-h-[480px] overflow-y-auto">
-      <ChatHistoryBox />
+      <div className="max-h-[480px] pr-2 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
+        <ChatHistoryBox />
       </div>
       {/* Profile dropdown */}
       <ProfileDropdown />
