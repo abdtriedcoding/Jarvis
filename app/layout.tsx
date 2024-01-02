@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex h-full`}>
-        <aside className="w-1/5 bg-gray-300 p-4">
+        <aside className="w-1/5 p-4">
           <Sidebar />
         </aside>
         <main className="w-4/5 pt-4 px-28 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
