@@ -23,7 +23,7 @@ export default function RootLayout({
         <aside className="w-1/5 bg-gray-300 p-4">
           <Sidebar />
         </aside>
-        <main className="w-4/5 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
+        <main className="w-4/5 pt-4 px-28 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
           {/* <Navbar /> */}
           {children}
         </main>
