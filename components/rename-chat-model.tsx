@@ -16,8 +16,8 @@ const RenameChatModel = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant={"outline"}>
-          <div className="flex space-x-2">
-            <h3>Rename chat</h3>
+          <div className="flex sm:space-x-2">
+            <h3 className="sm:block hidden">Rename chat</h3>
             <FileEditIcon className="w-5 h-5" />
           </div>
         </Button>
