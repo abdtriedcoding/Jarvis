@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "tailwindcss/tailwind.css";
 import Sidebar from "@/components/sidebar";
-// import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex h-full`}>
-        <aside className="w-1/5 p-4">
+        <aside className="w-1/5 p-4 bg-slate-50">
           <Sidebar />
         </aside>
-        <main className="w-4/5 pt-4 px-28 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
-          {/* <Navbar /> */}
+        <main className="w-4/5 overflow-y-auto scrollbar-thin scrollbar-thumb-slate-500">
+          <Navbar />
+          <main className="max-w-4xl mx-auto">
           {children}
+          </main>
         </main>
       </body>
     </html>
