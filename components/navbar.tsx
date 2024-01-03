@@ -1,5 +1,6 @@
-import { TrashIcon, UploadIcon } from "lucide-react";
+import { UploadIcon } from "lucide-react";
 import { Button } from "./ui/button";
+import DeleteChatModal from "./delete-chat-modal";
 
 const Navbar = () => {
   return (
@@ -11,12 +12,7 @@ const Navbar = () => {
             <UploadIcon className="w-5 h-5" />
           </div>
         </Button>
-        <Button variant={"destructive"} size={"lg"}>
-          <div className="flex space-x-2">
-            <h3>Delete chat</h3>
-            <TrashIcon className="w-5 h-5" />
-          </div>
-        </Button>
+            <DeleteChatModal />
       </div>
     </nav>
   );
