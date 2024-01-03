@@ -10,7 +10,7 @@ const ProfileDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="w-full">
-        <div className="flex p-1 rounded-md space-x-2 items-center text-center hover:bg-slate-200">
+        <div className="flex p-1 rounded-md space-x-2 items-center text-center bg-gray-50 hover:bg-gray-100">
           {/* Avatar */}
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
