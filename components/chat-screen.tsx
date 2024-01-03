@@ -72,7 +72,7 @@ const ChatScreen = () => {
   ];
 
   return (
-    <div className="flex-1">
+    <div className="flex-1 py-8">
       {messages.map((message, index) => (
         <div key={index} className="pb-5">
           <div className="flex space-x-2 items-center text-center">

@@ -9,7 +9,7 @@ const Sidebar = () => {
     <div className="space-y-6">
       {/* New chat button */}
       <Link href={"/"}>
-        <div className="flex justify-between items-center text-center bg-gray-50 hover:bg-gray-100 p-1 rounded-md">
+        <div className="flex justify-between items-center text-center bg-gray-100 hover:bg-gray-200 p-1 rounded-md">
           <div className="flex space-x-2 items-center text-center">
             {/* Avatar */}
             <Avatar>
