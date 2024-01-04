@@ -11,13 +11,18 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 
 const DeleteChatModal = () => {
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
-        <TrashIcon className="w-4 h-4" />
+      <AlertDialogTrigger asChild>
+        <Button variant="destructive">
+          <div className="flex space-x-2">
+            <h3>Delete chat</h3>
+            <TrashIcon className="w-5 h-5" />
+          </div>
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
