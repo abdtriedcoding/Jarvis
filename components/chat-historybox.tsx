@@ -1,4 +1,4 @@
-import RenameChatModel from "./rename-chat-model";
+import Link from "next/link";
 
 const chatHistory = [
   "Hi there!",
@@ -57,15 +57,13 @@ const ChatHistoryBox = () => {
   return (
     <div>
       {chatHistory.map((message, index) => (
-        <div
+        <Link
+          className="flex p-1 rounded-md mb-1 hover:bg-gray-200"
           key={index}
-          className="flex justify-between items-center text-center mb-4"
+          href="/"
         >
-          <h3 className="truncate mr-2 font-medium">{message}</h3>
-          <div>
-            <RenameChatModel />
-          </div>
-        </div>
+          <h3 className="truncate font-medium">{message}</h3>
+        </Link>
       ))}
     </div>
   );
