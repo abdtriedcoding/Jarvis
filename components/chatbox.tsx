@@ -18,11 +18,16 @@ const ChatBox = () => {
         console.log(ans);
       }}
     >
-      <div className="flex space-x-2">
-        <Input type="text" name="search" placeholder="Message chatGPT" />
-        <Button type="submit" variant={"outline"}>
-          Send
-        </Button>
+      <div className="flex flex-col space-y-2 p-4 max-w-4xl mx-auto z-20">
+        <div className="flex space-x-2">
+          <Input type="text" name="search" placeholder="Message chatGPT" />
+          <Button type="submit" variant={"outline"}>
+            Send
+          </Button>
+        </div>
+        <p className="text-center text-xs">
+          ChatGPT can make mistakes. Consider checking important information.
+        </p>
       </div>
     </form>
   );
