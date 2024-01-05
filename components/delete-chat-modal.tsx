@@ -18,8 +18,8 @@ const DeleteChatModal = () => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="destructive">
-          <div className="flex space-x-2">
-            <h3>Delete chat</h3>
+          <div className="flex sm:space-x-2">
+            <h3 className="sm:block hidden">Delete chat</h3>
             <TrashIcon className="w-5 h-5" />
           </div>
         </Button>
