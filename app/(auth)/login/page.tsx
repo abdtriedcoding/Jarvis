@@ -1,7 +1,10 @@
 const Page = () => {
   return (
-    <div>Page</div>
-  )
-}
+    <>
+      <h1>Login Page</h1>
+      <h3>Lets start building it next.</h3>
+    </>
+  );
+};
 
-export default Page
+export default Page;
