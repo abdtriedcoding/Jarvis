@@ -11,7 +11,7 @@ const Page = async ({
   searchParams,
 }: {
   params: { chatId: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: { [key: string]: string };
 }) => {
   const { chatId } = params;
   const { uid } = searchParams;
@@ -26,7 +26,7 @@ const Page = async ({
   return (
     <div className="flex h-full">
       <aside className="w-64 p-4 hidden md:block bg-slate-50">
-        <Sidebar />
+        <Sidebar uid={uid} />
       </aside>
       <div className="flex-1">
         <div className="h-full flex flex-col">

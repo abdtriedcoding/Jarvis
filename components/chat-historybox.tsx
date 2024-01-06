@@ -1,70 +1,32 @@
+"use client"
+
+import { auth, db } from "@/firebase/firebaseConfig";
+import { query, collection, orderBy } from "firebase/firestore";
 import Link from "next/link";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 
-const chatHistory = [
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-  "Hi there!",
-  "How are you?",
-  "I'm doing well, thanks!",
-  "What's new?",
-  "Not much, just working on a project.",
-];
+const ChatHistoryBox = ({ chatId }: { chatId: string }) => {
+  const [user, authstateLoading] = useAuthState(auth);
 
-const ChatHistoryBox = () => {
+  const [messages, loading] = useCollection(
+    query(
+      collection(db, `users/${user?.uid}/chats/${chatId}/messages`),
+      orderBy("timestamp", "asc")
+    )
+  );
+
+  if (authstateLoading || loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
-      {chatHistory.map((message, index) => (
-        <Link
-          className="flex p-1 rounded-md mb-1 hover:bg-gray-200"
-          key={index}
-          href="/"
-        >
-          <h3 className="truncate font-medium">{message}</h3>
-        </Link>
-      ))}
+      <Link className="flex p-1 rounded-md mb-1 hover:bg-gray-200" href="/">
+        <h3 className="truncate font-medium">
+          {messages?.docs[0]?.data().searchQuery}
+        </h3>
+      </Link>
     </div>
   );
 };
