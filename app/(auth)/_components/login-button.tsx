@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { auth } from "@/firebase/firebaseConfig";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 
 const LoginButton = () => {
   const [signInWithGoogle, , loading, error] = useSignInWithGoogle(auth);
   if (error) {
-    return <p>Error: {error.message}</p>;
+    toast.error(error.message);
   }
 
   return (
