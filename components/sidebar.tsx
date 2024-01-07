@@ -1,31 +1,21 @@
-// "use client";
-
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { PenSquareIcon } from "lucide-react";
 import Link from "next/link";
 import ChatHistoryBox from "./chat-historybox";
 import ProfileDropdown from "./profile-dropdown";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, getDocs, query } from "firebase/firestore";
-import { auth, db } from "@/firebase/firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import { db } from "@/firebase/firebaseConfig";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { User } from "@/types";
 
-const Sidebar = async({uid}:{uid?:string}) => {
-
-  // const [user] = useAuthState(auth);
-
-  // const [chats] = useCollection(
-  //   query(collection(db, `users/${uid}/chats/`))
-  // );
+const Sidebar = async () => {
+  const session = await getServerSession(authOptions);
+  const uid = (session?.user as User)?.id;
 
   const chatsCollection = collection(db, `users/${uid}/chats`);
-  const q = query(chatsCollection);
+  const q = query(chatsCollection, orderBy("timestamp", "desc"));
   const chats = await getDocs(q);
-  // const chats = querySnapshot.docs.map((doc) => ({
-  //   id: doc.id,
-  //   ...doc.data(),
-  // }));
-
 
   return (
     <>
