@@ -2,8 +2,7 @@
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { auth, db } from "@/firebase/firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { db } from "@/firebase/firebaseConfig";
 import {
   doc,
   collection,
@@ -14,13 +13,12 @@ import {
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { model } from "@/lib/generative-ai";
-import { User } from "firebase/auth";
 import { useSession } from "next-auth/react";
 
 const ChatBox = ({ chatId }: { chatId?: string }) => {
-  const [user] = useAuthState(auth);
-  const { data: session } = useSession()
-  // console.log(session)
+  const { data: session } = useSession();
+  const user = session?.user;
+  const uid = session?.user.id;
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -39,21 +37,21 @@ const ChatBox = ({ chatId }: { chatId?: string }) => {
       if (!chatId) {
         console.warn("chatId is undefined. Creating a new chat.");
         const newChatId = doc(collection(db, "ids")).id;
-        const chatDocRef = doc(db, `users/${user?.uid}/chats/${newChatId}`);
+        const chatDocRef = doc(db, `users/${uid}/chats/${newChatId}`);
         await setDoc(chatDocRef, {
           id: newChatId,
           timestamp: serverTimestamp(),
         });
-        router.push(`/chat/${newChatId}?uid=${user?.uid}`);
+        router.push(`/chat/${newChatId}`);
         // Send the user message
-        await sendMessageToChat(newChatId, searchQuery, user!);
+        await sendMessageToChat(newChatId, searchQuery);
         // Contact AI and send AI's response
         await sendAIToChat(newChatId, searchQuery);
         return;
       }
 
       // Send the user message
-      await sendMessageToChat(chatId, searchQuery, user!);
+      await sendMessageToChat(chatId, searchQuery);
 
       // Contact AI and send AI's response
       await sendAIToChat(chatId, searchQuery);
@@ -64,21 +62,18 @@ const ChatBox = ({ chatId }: { chatId?: string }) => {
     }
   };
 
-  const sendMessageToChat = async (
-    chatId: string,
-    searchQuery: string,
-    user: User
-  ) => {
+  const sendMessageToChat = async (chatId: string, searchQuery: string) => {
     const messagesCollectionRef = collection(
       db,
-      `users/${user?.uid}/chats/${chatId}/messages`
+      `users/${uid}/chats/${chatId}/messages`
     );
     const userMessage = {
       searchQuery,
       timestamp: serverTimestamp(),
       user: {
-        name: user?.displayName,
-        avatar: user?.photoURL,
+        name: user?.name,
+        email: user?.email,
+        avatar: user?.image,
       },
     };
     await addDoc(messagesCollectionRef, userMessage);
@@ -87,7 +82,7 @@ const ChatBox = ({ chatId }: { chatId?: string }) => {
   const sendAIToChat = async (chatId: string, searchQuery: string) => {
     const messagesCollectionRef = collection(
       db,
-      `users/${user?.uid}/chats/${chatId}/messages`
+      `users/${uid}/chats/${chatId}/messages`
     );
     const generationResult = await model.generateContent(searchQuery);
     const response = generationResult.response;
