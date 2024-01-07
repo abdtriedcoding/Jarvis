@@ -3,11 +3,10 @@ import { cert } from "firebase-admin/app";
 import NextAuth, { AuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import GoogleProvider from "next-auth/providers/google";
+import type { Session, User } from "@auth/core/types";
+
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
-  pages: {
-    signIn: "/login",
-  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -21,6 +20,17 @@ export const authOptions: AuthOptions = {
       privateKey: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, "\n"),
     }),
   }) as Adapter,
+  callbacks: {
+    async session({ session, user }: { session: Session; user: User }) {
+      if (session.user !== undefined) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: "/login",
+  },
 };
 
 const handler = NextAuth(authOptions);

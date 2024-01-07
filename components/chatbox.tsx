@@ -13,11 +13,14 @@ import {
 } from "firebase/firestore";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { model } from "@/app/GenerativeAI";
+import { model } from "@/lib/generative-ai";
 import { User } from "firebase/auth";
+import { useSession } from "next-auth/react";
 
 const ChatBox = ({ chatId }: { chatId?: string }) => {
   const [user] = useAuthState(auth);
+  const { data: session } = useSession()
+  // console.log(session)
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
