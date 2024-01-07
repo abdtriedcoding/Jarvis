@@ -4,21 +4,15 @@ import ChatBox from "@/components/chatbox";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { db } from "@/firebase/firebaseConfig";
+import { User } from "@/types";
 import { doc, getDoc } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 
-const Page = async ({
-  params,
-  searchParams,
-}: {
-  params: { chatId: string };
-  searchParams: { [key: string]: string };
-}) => {
+const Page = async ({ params }: { params: { chatId: string } }) => {
   const { chatId } = params;
   const session = await getServerSession(authOptions);
-  const uid = session?.user?.id
-
+  const uid = (session?.user as User)?.id;
 
   const chatDocRef = doc(db, `users/${uid}/chats/${chatId}`);
   const chatDoc = await getDoc(chatDocRef);
