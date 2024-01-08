@@ -17,8 +17,8 @@ const DeleteButton = ({ chatId }: { chatId?: string }) => {
   const uid = (session?.user as User)?.id;
   const handelDeleteChat = async () => {
     await deleteDoc(doc(db, `users/${uid}/chats/${chatId}`));
-    toast.success("Chat deleted successfully")
     router.push("/");
+    toast.success("Chat deleted successfully")
   };
 
   return (
