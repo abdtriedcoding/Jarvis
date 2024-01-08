@@ -17,13 +17,13 @@ const ChatHistoryBox = async ({ chatId }: { chatId: string }) => {
   const messages = await getDocs(q);
 
   return (
-    <div>
+    <>
       <Link className="flex p-1 rounded-md mb-1 hover:bg-gray-200" href={`/chat/${chatId}`}>
         <h3 className="truncate font-medium">
           {messages?.docs[0]?.data().text}
         </h3>
       </Link>
-    </div>
+    </>
   );
 };
 
