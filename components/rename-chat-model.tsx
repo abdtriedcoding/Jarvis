@@ -1,14 +1,12 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { FileEditIcon } from "lucide-react";
 
 const RenameChatModel = () => {
@@ -29,19 +27,7 @@ const RenameChatModel = () => {
             Rename chat here. Click save when youre done.
           </DialogDescription>
         </DialogHeader>
-        <form>
-          <div className="pb-5">
-            <Input
-              id="name"
-              name="name"
-              value="Pedro Duarte"
-              className="col-span-3"
-            />
-          </div>
-          <DialogClose>
-            <Button type="submit">Save changes</Button>
-          </DialogClose>
-        </form>
+        <p>This is under development</p>
       </DialogContent>
     </Dialog>
   );
