@@ -72,7 +72,7 @@ const ChatScreen = () => {
   ];
 
   return (
-    <div className="overflow-y-auto">
+    <>
       {messages.map((message, index) => (
         <div key={index} className="pb-5">
           <div className="flex space-x-2 items-center text-center">
@@ -93,7 +93,7 @@ const ChatScreen = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

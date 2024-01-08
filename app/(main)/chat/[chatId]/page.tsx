@@ -1,7 +1,7 @@
-const Page = () => {
-  return (
-    <div>Page</div>
-  )
-}
+import ChatScreen from "@/components/chat-screen";
 
-export default Page
+const Page = () => {
+  return <ChatScreen />;
+};
+
+export default Page;
