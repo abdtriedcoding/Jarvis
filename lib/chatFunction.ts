@@ -9,13 +9,15 @@ import {
 import router from "next/router";
 import { model } from "./generative-ai";
 import { User } from "@/types";
+import toast from "react-hot-toast";
 
 export const sendMessage = async (
   userInput: string,
   setUserInput: (value: string) => void,
   chatId: string | undefined,
   setIsLoading: (isLoading: boolean) => void,
-  user: User
+  user: User,
+  router: any
 ) => {
   try {
     setIsLoading(true);
@@ -77,6 +79,8 @@ export const sendAIToChat = async (
   userMessage: string,
   userId: string
 ) => {
+  const toastId = toast.loading("Jarvis was  thinking...");
+
   const messagesCollectionRef = collection(
     db,
     `users/${userId}/chats/${chatId}/messages`
@@ -96,4 +100,5 @@ export const sendAIToChat = async (
     },
   };
   await addDoc(messagesCollectionRef, aiMessage);
+  toast.dismiss(toastId);
 };

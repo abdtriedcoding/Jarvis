@@ -6,16 +6,18 @@ import { FormEvent, useState } from "react";
 import { useSession } from "next-auth/react";
 import { sendMessage } from "@/lib/chatFunction";
 import { User } from "@/types";
+import { useRouter } from "next/navigation";
 
 const ChatBox = ({ chatId }: { chatId?: string }) => {
   const { data: session } = useSession();
   const user = session?.user as User;
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    sendMessage(userInput, setUserInput, chatId, setIsLoading, user);
+    sendMessage(userInput, setUserInput, chatId, setIsLoading, user, router);
   };
 
   return (
