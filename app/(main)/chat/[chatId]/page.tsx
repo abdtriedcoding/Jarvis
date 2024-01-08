@@ -30,7 +30,7 @@ const Page = async ({ params }: { params: { chatId: string } }) => {
         <div className="h-full flex flex-col">
           <Navbar />
           <div className="flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300">
-            <ChatScreen />
+            <ChatScreen chatId={chatId}/>
           </div>
           <ChatBox chatId={chatId} />
         </div>
