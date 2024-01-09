@@ -7,16 +7,16 @@ import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Page = () => {
-  const [user, authstateLoading] = useAuthState(auth);
-  const router = useRouter();
+  // const [user, authstateLoading] = useAuthState(auth);
+  // const router = useRouter();
 
-  if (authstateLoading) {
-    return null;
-  }
+  // if (authstateLoading) {
+  //   return null;
+  // }
 
-  if (user) {
-    router.push("/");
-  }
+  // if (user) {
+  //   router.push("/");
+  // }
 
   return (
     <div className="flex flex-col space-y-6 text-center items-center justify-center h-full">
