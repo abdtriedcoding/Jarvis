@@ -111,7 +111,7 @@ const ChatBox = ({ chatId }: { chatId?: string }) => {
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-          <Button type="submit" variant={"outline"} disabled={isLoading}>
+          <Button type="submit" disabled={isLoading}>
             {isLoading ? "sending" : "send"}
           </Button>
         </div>
