@@ -6,7 +6,10 @@ import { signIn } from "next-auth/react";
 const LoginButton = () => {
   return (
     <>
-      <Button onClick={() => signIn("google", { callbackUrl: "/" })} size="lg">
+      <Button
+        onClick={() => signIn("google", { callbackUrl: "/", redirect: false })}
+        size="lg"
+      >
         Login with Google
       </Button>
     </>
