@@ -1,9 +1,11 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import ChatScreen from "@/components/chat-screen";
 import ChatBox from "@/components/chatbox";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { db } from "@/firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
+import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 
 const Page = async ({
@@ -14,7 +16,9 @@ const Page = async ({
   searchParams: { [key: string]: string };
 }) => {
   const { chatId } = params;
-  const { uid } = searchParams;
+  const session = await getServerSession(authOptions);
+  const uid = session?.user?.id
+
 
   const chatDocRef = doc(db, `users/${uid}/chats/${chatId}`);
   const chatDoc = await getDoc(chatDocRef);
