@@ -14,11 +14,12 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { model } from "@/lib/generative-ai";
 import { useSession } from "next-auth/react";
+import { User } from "@/types";
 
 const ChatBox = ({ chatId }: { chatId?: string }) => {
   const { data: session } = useSession();
   const user = session?.user;
-  const uid = session?.user.id;
+  const uid = (session?.user as User)?.id;
   const router = useRouter();
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
