@@ -1,24 +1,20 @@
-"use client"
-
-import { auth, db } from "@/firebase/firebaseConfig";
-import { query, collection, orderBy } from "firebase/firestore";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { db } from "@/firebase/firebaseConfig";
+import { User } from "@/types";
+import { query, collection, orderBy, getDocs } from "firebase/firestore";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
 
-const ChatHistoryBox = ({ chatId }: { chatId: string }) => {
-  const [user, authstateLoading] = useAuthState(auth);
+const ChatHistoryBox = async ({ chatId }: { chatId: string }) => {
+  const session = await getServerSession(authOptions);
+  const uid = (session?.user as User)?.id;
 
-  const [messages, loading] = useCollection(
-    query(
-      collection(db, `users/${user?.uid}/chats/${chatId}/messages`),
-      orderBy("timestamp", "asc")
-    )
+  const messagesCollection = collection(
+    db,
+    `users/${uid}/chats/${chatId}/messages`
   );
-
-  if (authstateLoading || loading) {
-    return <p>Loading...</p>;
-  }
+  const q = query(messagesCollection, orderBy("timestamp", "asc"));
+  const messages = await getDocs(q);
 
   return (
     <div>
