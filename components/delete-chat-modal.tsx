@@ -12,8 +12,15 @@ import {
 } from "./ui/alert-dialog";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "./ui/button";
+import { db } from "@/firebase/firebaseConfig";
+import { deleteDoc, doc } from "firebase/firestore";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { User } from "@/types";
+import { redirect } from "next/navigation";
+import DeleteButton from "./delete-button";
 
-const DeleteChatModal = () => {
+const DeleteChatModal = async ({ chatId }: { chatId?: string }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -36,11 +43,7 @@ const DeleteChatModal = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction
-            className={cn(buttonVariants({ variant: "destructive" }))}
-          >
-            Continue
-          </AlertDialogAction>
+          <DeleteButton chatId={chatId}/>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
