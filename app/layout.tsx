@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import { getServerSession } from "next-auth";
 import SessionProvider from "./providers/session-provider";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import TopLoaderBar from "@/components/top-loader-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${inter.className}`}>
         <SessionProvider session={session}>
+        <TopLoaderBar />
           <Toaster />
           {children}
         </SessionProvider>
