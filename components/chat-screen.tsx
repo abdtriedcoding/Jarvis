@@ -23,7 +23,11 @@ const ChatScreen = ({ chatId }: { chatId?: string }) => {
 
   return (
     <div className="p-4">
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div className="flex justify-center items-center mt-16">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+        </div>
+      )}
       {messagesSnapshot?.docs?.map((doc: any, index: number) => {
         const message = { id: doc.id, ...doc.data() };
         return (
