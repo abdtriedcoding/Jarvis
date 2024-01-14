@@ -29,7 +29,7 @@ const ChatBox = ({ chatId }: { chatId?: string }) => {
         <div className="flex space-x-2">
           <Input
             type="text"
-            placeholder="Message ChatGPT"
+            placeholder="Message Jarvis"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
           />
@@ -38,7 +38,7 @@ const ChatBox = ({ chatId }: { chatId?: string }) => {
           </Button>
         </div>
         <p className="text-center text-xs">
-          ChatGPT can make mistakes. Consider checking important information.
+        Jarvis can make mistakes. Consider checking important information.
         </p>
       </div>
     </form>

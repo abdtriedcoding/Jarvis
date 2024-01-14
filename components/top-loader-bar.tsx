@@ -10,6 +10,7 @@ const TopLoaderBar = () => {
       crawl={true}
       easing="ease"
       speed={200}
+      showSpinner={false}
       showAtBottom={false}
     />
   );

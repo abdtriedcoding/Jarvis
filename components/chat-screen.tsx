@@ -41,11 +41,8 @@ const ChatScreen = ({ chatId }: { chatId?: string }) => {
             </div>
             <div className="ml-12 space-y-2">
               <p className="text-sm">{message.text}</p>
-              {message.isChatGPT && (
-                <div className="flex space-x-3 items-center text-center">
-                  <CopyIcon className="w-4 h-4 cursor-pointer" />
-                  <ArrowDownCircle className="w-4 h-4 cursor-pointer" />
-                </div>
+              {message.user?.name === "Jarvis" && (
+                <CopyIcon className="w-4 h-4 cursor-pointer" />
               )}
             </div>
           </div>
